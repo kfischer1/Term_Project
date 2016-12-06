@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html> 
+
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+	<title>Contact Us</title>
+
+	<meta name="keywords" content="Sestora, sestora, contact sestora, sestora contact information" />
+	<meta name="description" content="Sestora - learn how to sign up or get in touch with our team!" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<style type="text/css">
+	body{background-color: black}	
+	</style>
+	
+	<script type="text/javascript">
+	function processForm()
+	{
+		var theForm=document.getElementById("f1")
+		var first=document.getElementById("fname").value
+		var last=document.getElementById("lname").value
+		var email=document.getElementById("em").value
+		var status=document.getElementById("status").value
+		var location = ""
+		var comments=document.getElementById("comments").value
+
+		for(i=1; i<=4;i++){
+			if(document.getElementById("checkbox"+i).checked)
+				location = document.getElementById("checkbox"+i).value
+		}
+
+		if (first=="")
+		{
+			alert("Please enter a first name");
+			document.getElementById("fname").focus();
+		}
+		else if (comments==""){
+			alert("Please enter a comment");
+			document.getElementById("comment").focus();
+		}
+		else if (last=="")
+		{
+			alert("Please enter a last name");
+			document.getElementById("lname").focus();
+		}
+		else if (status=="")
+		{
+			alert("Please enter a status");
+			document.getElementById("status").focus();
+		}
+		else if (location=="")
+		{
+			alert("Please enter a location");
+			document.getElementById("location").focus();
+		}
+		else 
+		{
+			$.post("store/"+first+"/"+last+"/"+email+"/"+status+"/"+location+"/"+comments, function(data) {
+				alert("Submitted")
+			})
+		}
+	}
+	function changebkgColor()
+	{
+		document.getElementById("f1").style.backgroundColor="white";
+		document.getElementById("f1").style.color="black";
+	}
+	function changebkgColorBack()
+	{
+		document.getElementById("f1").style.backgroundColor="black";
+		document.getElementById("f1").style.color="#A6A1FF";
+	}
+	function changeCUColor()
+	{
+		var contactUs = document.getElementById("CU");
+		if (contactUs.style.color == "#A6A1FF") contactUs.style.color="white";
+		else contactUs.style.color="#A6A1FF";
+		setTimeout("changeCUColor()", 500);
+	}
+
+	</script>
+  </head>
+
+  <body>
+	<table class="hptop">
+		<tr><td><img src="/static/logo.PNG" alt="Sestora Logo" width=30 height=30 /></td><td><a href="index.htm">Sestora</a>
+		</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	</table>
+	<h1 style="text-align:center; color:#A6A1FF" id="CU">Contact Us </h1>
+	<h2 style="color:#A6A1FF"> Fill in your information here! </h2>
+	<form style="color:#A6A1FF" id="f1" onmouseover="changebkgColor()" onmouseout="changebkgColorBack()">
+	<p> First Name 
+		<input id="fname" type="text" name="firstname" maxlength="100" placeholder="Enter First Name" />
+		Last Name
+		<input id="lname" type="text" name="lastname" maxlength="100" placeholder="Enter Last Name" />
+		Email
+		<input id="em" type="text" name="email" maxlength="100" placeholder="Enter Email"
+	</p>
+	<p> Gender:
+		Male <input type="radio" name="gender" value="Male" />
+		Female <input type="radio" name="gender" value="female" />
+	</p> 
+	<p> Are you interested in being a host? A renter? Both? 
+		<select id="status" name="D1">
+			<option value="Host">Host</option>
+			<option value="Renter">Renter</option>
+			<option value="Both">Both</option>
+		</select>
+	</p>
+	<p> Which target city are you based out of? <br />
+		<input type="checkbox" id="checkbox1" name="Boston" value="Boston" /> Boston<br/>
+		<input type="checkbox" id="checkbox2" name="New York" value="New York" /> New York<br/>
+		<input type="checkbox" id="checkbox3" name="Los Angeles" value="Los Angeles" /> Los Angeles<br/>
+		<input type="checkbox" id="checkbox4" name="Seattle" value="Seattle" /> Seattle
+	</p>
+	<p> Please add any additional comments you may have </p>
+	<p>	
+		<textarea name="Comments" id="comments" rows="5" cols="40">
+		</textarea>
+	</p>
+	<button type="button" onclick="processForm()" onclick="changeCUColor()">Submit</button>
+	<input type="Reset" value="Reset" name="Reset" />	
+	</form>
+		<hr>
+	<h3 style="color:#A6A1FF" class="a"> Hunter Schilb, CEO </h3>
+	<p style="color:#A6A1FF" class="a"> Email: hunter@sestora.com </p>
+	<p style="color:#A6A1FF" class="a"> Phone: 781 635 2861 </p> 
+  </body>
+</html>
